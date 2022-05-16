@@ -127,4 +127,4 @@ var getFeaturedRepos = function(language) {
       }
 
   }
-  languageButtonsEl.addEventListener("click", buttonClickHandler);
+  languageButtonsE1.addEventListener("click", buttonClickHandler);
