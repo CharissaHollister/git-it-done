@@ -4,6 +4,9 @@ var issueContainerEl = document.querySelector("#issues-container");
 //get container for limit warning
 var limitWarningEl = document.querySelector("#limit-warning");
 
+//get container for repo name
+var repoNameEl = document.querySelector("#repo-name");
+
 //get issues from repo function
 var getRepoIssues = function (repo) {
   console.log(repo);
@@ -21,13 +24,32 @@ var getRepoIssues = function (repo) {
         }
       });
     } else {
-      alert("There was a problem with your request!");
+      // if not successful, redirect to homepage
+      document.location.replace("./index.html");
     }
   });
 };
 
-getRepoIssues("facebook/ax");
+//getRepoIssues("facebook/ax");
 //getRepoIssues("charissahollister/git-it-done");
+
+//function to get repo name
+var getRepoName = function () {
+  // grab repo name from url query string
+  var queryString = document.location.search;
+  var repoName = queryString.split("=")[1];
+
+  if (repoName) {
+    // display repo name on the page
+    repoNameEl.textContent = repoName;
+
+    getRepoIssues(repoName);
+  } else {
+    // if no repo was given, redirect to the homepage
+    document.location.replace("./index.html");
+  }
+};
+getRepoName();
 
 //function to warn more than 30 results
 var displayWarning = function (repo) {
